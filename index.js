@@ -65,7 +65,7 @@ let Page = function(){
                {
                 element : "div",
                 year : "",
-                content : ["Dedicated and efficient Full Stack developer who creates high-performing applications with organized architecture. Keen interest in Data Science and the translation of data to power organization, by uncovering hidden relations using innovative data exploration/visualization tools and methods."] ,      
+                content : ["Dedicated and efficient Full Stack developer who creates high-performing applications with organized architecture. Keen interest in Data Science and the translation of data to power organizations, by uncovering hidden relations using innovative data exploration/visualization tools and methods."] ,      
                 style : { } 
                }
            ]
@@ -98,7 +98,7 @@ let Page = function(){
                     year : "",
                     content : [
                         "Technical License Degree in Informatics Systems Programming",
-                        "Technical Excellence Degree in Informatics Systems Programmin",
+                        "Technical Excellence Degree in Informatics Systems Programming",
                 ],
                     style : {
                          "display": "list-item",
