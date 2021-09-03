@@ -12,7 +12,7 @@ html,body{
     height: 100%;
     margin: 0;
     padding: 0;   
-   
+   scroll-behavior: smooth;
 }
 
 
@@ -81,6 +81,9 @@ ul{
     width: fit-content;
 }
 
+ul > li {
+    margin-bottom: 7px;
+}
 .main-content > ul{
  
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -109,4 +112,66 @@ ul{
     .main-content{
         padding-top: 20px;
     }
+
+    .copy-btn > img{
+        width: 40px;
+        height: 40px;
+    }
 }
+
+#snackbar{
+    visibility: hidden;
+    font-weight: 500;
+    min-width: 250px;
+    margin-left: -125px;
+    background: var(--main-black);
+    color: #fafafa;
+    text-align: left;
+    border-radius: 1px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 20px;
+}
+
+#snackbar.show-snackbar {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+  .copy-btn{
+      background-color: var(--main-black) ;
+      border: none;
+      border-radius: 10px;
+      padding: 5px;
+  }
+  button:hover{
+      cursor: pointer;
+  }
+
+  button:active{
+      background-color: #fafafa;
+  }

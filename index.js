@@ -4,9 +4,9 @@ let Page = function(){
             title : "CONTACT DETAILS",
             items : [
                 "Email : josefgchdid@gmail.com", 
-                "Phone: +961 76 989 427",
-                "Github: github.com/josephgchdid",
-                "Linkedin: linkedin.com/in/joseph-chdid/"
+                "Phone : +961 76 989 427",
+                "Github : github.com/josephgchdid",
+                "Linkedin : linkedin.com/in/joseph-chdid/"
             ] 
         },
         {
@@ -232,8 +232,168 @@ let Page = function(){
 
         }
     }
+    
+    this.manualCopy = (text) => {
+
+        var textArea = document.createElement('textarea');
+        
+        textArea.value = text;
+
+        var style = {
+            'top' : "0", 
+            "left" : "0",
+            "position" : "fixed",
+            'width' : '2em',
+            'height' : '2em',
+            'border' : 'none',
+            'outline' : 'none',
+            'boxShadow' : 'none',
+            'background' : 'transparent',
+
+        }
+        
+        Object.assign(textArea.stlye, style)
+
+        document.body.appendChild(textArea);
+
+        textArea.focus()
+
+        textArea.select()
+
+        try{
+            var status = document.execCommand('copy');
+            return status;
+        }catch(err){
+            console.error('Could not copy to clipboard', err)
+        }
+    }
+
+    this.copyTextToClipBoard = (text, target) => {
+        
+        if(!navigator.clipboard){
+            this.manualCopy(text)
+            this.showSnackbar(target);
+            return;
+        }
+
+        navigator.clipboard.writeText(text).then(() => {
+            this.showSnackbar(target);
+        })
+    }
+
+    this.createCopyButton = () => {
+
+        var contactInfos =  document.querySelector('#left-side > ul:nth-child(1)').children;
+
+        var len = contactInfos.length;
+
+        for(var i = 1; i < len; i++){
+
+            var button = document.createElement("button");
+
+            button.classList.add('copy-btn');
+
+            let image = document.createElement('img')
+            
+            image.src = '/img/copy.png'
+            
+            button.appendChild(image)
+            
+            let element = contactInfos[i];
+
+            let info = element.innerText;
+
+            let source = info.substring(0, info.indexOf(':') - 1)
+
+            let value =  info.substring(info.indexOf(':') + 1 , info.length)
+            
+            button.title = `copy ${source}`
+
+            button.addEventListener('click', () => {
+                this.copyTextToClipBoard(value, source)
+            });
+
+
+            element.prepend(button)
+        }
+     
+    
+        
+    }
+
+    this.showSnackbar = (target) => {
+     
+        var snackbar = document.getElementById('snackbar');
+     
+        snackbar.innerText = `copied ${target} to clipboard`
+     
+        snackbar.className = "show-snackbar";
+     
+        setTimeout(() => {
+            snackbar.className = snackbar.className.replace('show-snackbar', '')
+        }, 3000)
+    }
+
+
+    let firstName = "JOSEPH CHDID";
+
+    let occupation = "FULL STACK DEVELOPER"
+
+    let firstNameArray = [...firstName]
+
+    let occupationArray = [...occupation]
+
+    let str = ""
+
+    this.executeWordDisplay = async () => {
+       
+        await this.displayWord(firstNameArray, 0, firstNameArray.length,'name')
+       
+        setTimeout(() => {}, 1000)
+       
+        await this.displayWord(occupationArray, 0, occupationArray.length, 'job')
+    }
+
+    this.displayWord = (array, iter, len, elementName) => {
+
+        let element = document.getElementById(elementName);
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                this.displayWordRec(array, iter, len, element);
+                resolve();
+            }, 1000)
+           
+        })
+    }
+
+    this.displayWordRec = (array, iter , len, element) => {
+        
+        if(iter != len) {
+           
+            str += array[iter];
+
+            element.innerText = str;
+
+            iter++
+
+            setTimeout((f) =>  f(array, iter , len, element ) , 50, this.displayWordRec);
+        }else {
+
+            element.innerText = str
+            
+            str = ""
+        }
+
+    }
+
+   
 }
 
 let p = new Page()
 p.buildLeftPane()
 p.buildRightPane()
+p.createCopyButton()
+document.addEventListener('DOMContentLoaded', function() {
+    p.executeWordDisplay()
+ }, false);
