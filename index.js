@@ -158,8 +158,11 @@ let Page = function(){
     ]
 
     this.leftSidePane = document.getElementById("left-side")
+
     this.rightSidePane = document.getElementById("right-side")
+    
     this.profileImage = document.getElementById("profile-img-small")
+    
     this.profileImageEnlarged = document.getElementById("profile-img-large")
 
     this.buildLeftPane = () => {
@@ -197,6 +200,7 @@ let Page = function(){
         for(var i = 0; i < len; i++){
             
             var ul = document.createElement("ul");
+
             ul.classList.add("no-type")
  
             var h2 = document.createElement("h2")
@@ -204,6 +208,7 @@ let Page = function(){
             h2.innerText = this.rightSideSkills[i].title;
 
             ul.appendChild(h2)
+
             var sectionLen = this.rightSideSkills[i].sections.length;
             
             var sections = this.rightSideSkills[i].sections;
@@ -290,32 +295,26 @@ let Page = function(){
 
         for(var i = 1; i < len; i++){
 
-            var button = document.createElement("button");
-
-            button.classList.add('copy-btn');
-
             let image = document.createElement('img')
             
-            image.src = '/img/copy.png'
-            
-            button.appendChild(image)
+            image.src = '/img/copy.png'            
             
             let element = contactInfos[i];
 
             let info = element.innerText;
 
-            let source = info.substring(0, info.indexOf(':') - 1)
+            let source = info.substring(0, info.indexOf(':') - 1).toLowerCase()
 
             let value =  info.substring(info.indexOf(':') + 1 , info.length)
             
-            button.title = `copy ${source}`
+            element.title = `copy ${source}`
 
-            button.addEventListener('click', () => {
+            element.addEventListener('click', () => {
                 this.copyTextToClipBoard(value, source)
             });
 
-
-            element.prepend(button)
+            element.classList.add('copy-btn')
+            element.prepend(image)
         }
      
     
@@ -326,7 +325,7 @@ let Page = function(){
      
         var snackbar = document.getElementById('snackbar');
      
-        snackbar.innerText = `copied ${target} to clipboard`
+        snackbar.innerText = `Copied ${target} to clipboard`
      
         snackbar.className = "show-snackbar";
      
@@ -344,8 +343,6 @@ let Page = function(){
 
     let occupationArray = [...occupation]
 
-    let str = ""
-
     this.executeWordDisplay = async () => {
        
         await this.displayWord(firstNameArray, 0, firstNameArray.length,'name')
@@ -361,14 +358,14 @@ let Page = function(){
 
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                this.displayWordRec(array, iter, len, element);
+                this.displayWordRec(array, iter, len, element, "");
                 resolve();
             }, 1000)
            
         })
     }
 
-    this.displayWordRec = (array, iter , len, element) => {
+    this.displayWordRec = (array, iter , len, element, str) => {
         
         if(iter != len) {
            
@@ -378,12 +375,11 @@ let Page = function(){
 
             iter++
 
-            setTimeout((f) =>  f(array, iter , len, element ) , 50, this.displayWordRec);
+            setTimeout((f) =>  f(array, iter , len, element, str ) , 50, this.displayWordRec);
         }else {
 
             element.innerText = str
             
-            str = ""
         }
 
     }
@@ -422,8 +418,11 @@ let Page = function(){
 
 let p = new Page()
 p.buildLeftPane()
+
 p.buildRightPane()
+
 p.createCopyButton()
+
 document.addEventListener('readystatechange', event => { 
 
 
@@ -432,5 +431,7 @@ document.addEventListener('readystatechange', event => {
         p.executeWordDisplay();
     }
 });
+
 p.profileImage.addEventListener('click', p.onImageClick);
+
 p.profileImageEnlarged.addEventListener('click', p.onImageHide)
