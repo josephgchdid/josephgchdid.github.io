@@ -159,7 +159,8 @@ let Page = function(){
 
     this.leftSidePane = document.getElementById("left-side")
     this.rightSidePane = document.getElementById("right-side")
-
+    this.profileImage = document.getElementById("profile-img-small")
+    this.profileImageEnlarged = document.getElementById("profile-img-large")
 
     this.buildLeftPane = () => {
 
@@ -387,7 +388,36 @@ let Page = function(){
 
     }
 
+    let isProfilePicClicked = false;
    
+    let hiddenStyle = {
+        display : "none"
+    }
+
+    let shownStyle = {
+        display : "block"
+    }
+
+
+    this.onImageClick = () => {
+
+        Object.assign(this.profileImage.style, hiddenStyle);
+       
+        Object.assign(this.profileImageEnlarged.style, shownStyle)
+       
+        isProfilePicClicked = true;
+    }
+
+    this.onImageHide = () => {
+
+
+        Object.assign(this.profileImage.style, shownStyle);
+        
+        Object.assign(this.profileImageEnlarged.style, hiddenStyle)
+        
+        isProfilePicClicked = false;
+
+    }
 }
 
 let p = new Page()
@@ -402,3 +432,5 @@ document.addEventListener('readystatechange', event => {
         p.executeWordDisplay();
     }
 });
+p.profileImage.addEventListener('click', p.onImageClick);
+p.profileImageEnlarged.addEventListener('click', p.onImageHide)
