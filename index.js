@@ -295,26 +295,35 @@ let Page = function(){
 
         for(var i = 1; i < len; i++){
 
+            var button = document.createElement("button");
+
+            button.classList.add('copy-btn');
+
             let image = document.createElement('img')
             
             image.src = '/img/copy.png'            
             
+
             let element = contactInfos[i];
 
             let info = element.innerText;
 
+     
             let source = info.substring(0, info.indexOf(':') - 1).toLowerCase()
 
             let value =  info.substring(info.indexOf(':') + 1 , info.length)
             
-            element.title = `copy ${source}`
+            button.innerText = source.toUpperCase()
 
-            element.addEventListener('click', () => {
+            button.append(image)
+
+            button.title = `copy ${source}`
+
+            button.addEventListener('click', () => {
                 this.copyTextToClipBoard(value, source)
             });
 
-            element.classList.add('copy-btn')
-            element.prepend(image)
+            element.replaceWith(button)
         }
      
     
