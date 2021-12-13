@@ -136,6 +136,34 @@ let Page = function(){
                         "list-style-type": "disc",
                     }
                 },
+
+                {
+                    element : "div",
+                    year : "2021- ",
+                    content : ["I-magineworks - iOS developer"],
+                    style : {"font-weight"  : "bold"}
+                },
+                
+                {
+                    element : "div",
+                    year : "",
+                    content : ["Private Swift library that integrates with 3rd party apps to deliver scheduled ads based on the users explicit preference"],
+                    style : {}
+                },
+                {
+                    element : "li",
+                    year : "",
+                    content : [
+                        "Maintained and refractored old code base written in Swift to ensure it is up-to-date with tech standards",
+                        "Code weakness analysis, evaluation and solutions presentation",
+                        "Worked with a team of developers and quality assurance to troubleshoot errors",
+                        "Worked closely with product team on scope of future projects and innovations"
+                ],
+                    style : {
+                        "display": "list-item",
+                        "list-style-type": "disc",
+                    }
+                },
             ]
         },
         
@@ -392,8 +420,6 @@ let Page = function(){
         }
 
     }
-
-    let isProfilePicClicked = false;
    
     let hiddenStyle = {
         display : "none"
