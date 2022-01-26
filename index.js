@@ -158,7 +158,7 @@ let Page = function(){
                     content : [
                         "Analyze and assess code weakness for observations and recommendations",
                         "Coordinate with FullStack Development team for  quality assurance and troubleshooting",
-                        "Coordinate with Prduct Development team on scope of future projects and innovations",
+                        "Coordinate with Product Development team on scope of future projects and innovations",
                         "Operate directly with UI/UX teams to design unparalleled user experience",
                         "Assess client apps and direct them towards useful solutions that scale up technical needs and business requirements"
                 ],
