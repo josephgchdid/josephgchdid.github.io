@@ -1,3 +1,5 @@
+//terser lib
+
 let Page = function(){
     this.leftSideSkills = [
         {
@@ -139,25 +141,26 @@ let Page = function(){
 
                 {
                     element : "div",
-                    year : "2021- ",
-                    content : ["I-magineworks - iOS developer"],
+                    year : "2021 - Present ",
+                    content : ["I-magineworks - Full time - FullStack Developer ( iOS and ASP.net core )"],
                     style : {"font-weight"  : "bold"}
                 },
                 
                 {
                     element : "div",
                     year : "",
-                    content : ["Private Swift library that integrates with 3rd party apps to deliver scheduled ads based on the users explicit preference"],
+                    content : ["Private mobile library that integrates with 3rd party apps to deliver scheduled ads based on the user’s explicit preferences"],
                     style : {}
                 },
                 {
                     element : "li",
                     year : "",
                     content : [
-                        "Maintained and refractored old code base written in Swift to ensure it is up-to-date with tech standards",
-                        "Code weakness analysis, evaluation and solutions presentation",
-                        "Worked with a team of developers and quality assurance to troubleshoot errors",
-                        "Worked closely with product team on scope of future projects and innovations"
+                        "Analyze and assess code weakness for observations and recommendations",
+                        "Coordinate with FullStack Development team for  quality assurance and troubleshooting",
+                        "Coordinate with Prduct Development team on scope of future projects and innovations",
+                        "Operate directly with UI/UX teams to design unparalleled user experience",
+                        "Assess client apps and direct them towards useful solutions that scale up technical needs and business requirements"
                 ],
                     style : {
                         "display": "list-item",
